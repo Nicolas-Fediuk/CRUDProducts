@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "bCCfLpHAysfEqegr8+dVqTIuLBGL+0Oglgu45HevpE1dXqN0IsCcgLQgouvJk3jywMhsyNsMRrGU3IkOsog+7Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\nfediuk\\Desktop\\CRUDProducts\\CRUDProducts\\CRUDProducts.UI\\CRUDProducts.UI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nfediuk\\.nuget\\packages\\dapper\\2.0.151\\dapper.2.0.151.nupkg.sha512"
+  ],
+  "logs": []
+}
