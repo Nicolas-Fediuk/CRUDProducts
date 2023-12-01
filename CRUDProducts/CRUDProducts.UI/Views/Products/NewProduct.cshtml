@@ -1,0 +1,41 @@
+﻿@using CRUDProducts.UI.Models.Entitys
+@model Product
+
+<body>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <main>
+        <h1>New product</h1>
+
+        <form asp-action="NewProduct">
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" asp-for="NAME_PRO" class="form-control"/>
+                <span asp-validation-for="NAME_PRO" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Stock</label>
+                <input type="text" asp-for="STOCK_PRO" class="form-control" />
+                <span asp-validation-for="STOCK_PRO" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Value</label>
+                <input type="text" asp-for="VALUE_PRO" class="form-control" />
+                <span asp-validation-for="VALUE_PRO" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+    </main>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @section Scripts{
+        <partial name="_ValidationScriptsPartial" />
+    }
+</body>

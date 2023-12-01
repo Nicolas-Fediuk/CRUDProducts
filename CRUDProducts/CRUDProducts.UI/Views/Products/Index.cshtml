@@ -1,0 +1,40 @@
+﻿@using CRUDProducts.UI.Models.Entitys
+@model IEnumerable<Product>
+
+<h1>List products</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>User</th>
+            <th>Stock</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody id="order">
+        @foreach(var items in Model)
+        {
+            <tr>
+                <td>
+                    @items.NAME_PRO
+                </td>
+                <td>
+                    @items.USER_PRO
+                </td>
+                <td>
+                    @items.STOCK_PRO
+                </td>
+                <td>
+                    @items.VALUE_PRO
+                </td>
+                <td>
+                    <a asp-action="EditProduct" asp-route-name="@items.NAME_PRO">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@items.NAME_PRO">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="NewProduct">New</a>

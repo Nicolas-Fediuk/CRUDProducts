@@ -16,12 +16,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\nfediuk\Desktop\CRUDProducts\CRUDProducts\CRUDProducts.UI
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/nfediuk/Desktop/CRUDProducts/CRUDProducts/CRUDProducts.UI/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[C:/Users/nfediuk/Desktop/CRUDProducts/CRUDProducts/CRUDProducts.UI/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nfediuk/Desktop/CRUDProducts/CRUDProducts/CRUDProducts.UI/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[C:/Users/nfediuk/Desktop/CRUDProducts/CRUDProducts/CRUDProducts.UI/Views/Login/NewUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTmV3VXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nfediuk/Desktop/CRUDProducts/CRUDProducts/CRUDProducts.UI/Views/Products/EditProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRWRpdFByb2R1Y3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nfediuk/Desktop/CRUDProducts/CRUDProducts/CRUDProducts.UI/Views/Products/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nfediuk/Desktop/CRUDProducts/CRUDProducts/CRUDProducts.UI/Views/Products/NewProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcTmV3UHJvZHVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/nfediuk/Desktop/CRUDProducts/CRUDProducts/CRUDProducts.UI/Views/Shared/Error.cshtml]

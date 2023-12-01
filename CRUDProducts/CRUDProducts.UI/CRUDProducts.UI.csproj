@@ -8,10 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.151" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\CRUDProducts.DAL\CRUDProducts.DAL.csproj" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
   </ItemGroup>
 
 </Project>
