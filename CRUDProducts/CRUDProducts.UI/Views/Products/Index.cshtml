@@ -1,40 +1,92 @@
 ﻿@using CRUDProducts.UI.Models.Entitys
 @model IEnumerable<Product>
 
-<h1>List products</h1>
 
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>User</th>
-            <th>Stock</th>
-            <th>Value</th>
-        </tr>
-    </thead>
-    <tbody id="order">
-        @foreach(var items in Model)
-        {
-            <tr>
-                <td>
-                    @items.NAME_PRO
-                </td>
-                <td>
-                    @items.USER_PRO
-                </td>
-                <td>
-                    @items.STOCK_PRO
-                </td>
-                <td>
-                    @items.VALUE_PRO
-                </td>
-                <td>
-                    <a asp-action="EditProduct" asp-route-name="@items.NAME_PRO">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@items.NAME_PRO">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div id="containerPro" class="vh-100">
 
-<a asp-action="NewProduct">New</a>
+    <h1 class="text-center mt-5 mb-5">List products</h1>
+
+    <div id="loadingDiv" class="vh-100 ">
+        <div id="cubo">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+            <div>
+                <p style="font-weight:bold">Loading...</p>
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="tableDiv" style="display:none" class="mt-5 text-center p-5 rounded">
+        <table class="table" id="miTabla">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>User</th>
+                    <th>Stock</th>
+                    <th>Value</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="order">
+                @foreach (var items in Model)
+                {
+                    <tr>
+                        <td>
+                            @items.NAME_PRO
+                        </td>
+                        <td>
+                            @items.USER_PRO
+                        </td>
+                        <td>
+                            @items.STOCK_PRO
+                        </td>
+                        <td>
+                            @items.VALUE_PRO
+                        </td>
+                        <td>
+                            <input type="hidden" value="@items.NAME_PRO" class="ids">
+                            <a class="btn btn-warning" asp-action="EditProduct" asp-route-name="@items.NAME_PRO">Edit</a>
+                            <a class="btn btn-danger btnDelete">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            <a class="btn btn-success" asp-action="NewProduct">New</a>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/DeleteProduct.js"></script>
+
+@section Scripts{
+
+    <script>
+
+        $(document).ready(function () {
+            $('#miTabla').DataTable({
+                "paging": true, // Habilitar la paginación
+                "pageLength": 10 // Cantidad de registros por página
+            });
+        });
+
+        setTimeout(function () {
+            document.getElementById('loadingDiv').style.display = 'none';
+            document.getElementById('tableDiv').style.display = 'block';
+        }, 3000);
+
+    </script>
+}
+
+    
+
+
+

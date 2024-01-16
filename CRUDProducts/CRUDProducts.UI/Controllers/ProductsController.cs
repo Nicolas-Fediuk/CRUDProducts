@@ -2,6 +2,8 @@
 using CRUDProducts.UI.Models.Entitys;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
+using System.Reflection;
 
 namespace CRUDProducts.UI.Controllers
 {
@@ -23,26 +25,25 @@ namespace CRUDProducts.UI.Controllers
         [HttpGet]
         public IActionResult NewProduct()
         {
-
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> NewProduct(Product product)
         {
-            if(ModelState.IsValid)
+
+            product.USER_PRO = Request.Cookies["mailUser"].ToString();
+
+            product.ORDER_PRO = await data.MaxOrden();
+
+            if (await data.checkProductExist(product.NAME_PRO))
             {
-                return View(product);
+                return Json(new { success = false});
             }
-
-            var correo = Request.Cookies["mailUser"];
-
-            product.USER_PRO = correo.ToString();
 
             await data.AddNewProduct(product);
 
-            return RedirectToAction("Index", "Products");
-
+            return Json(new { success = true });
         }
 
         [HttpGet]
@@ -55,8 +56,39 @@ namespace CRUDProducts.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> EditProduct(Product product)
         {
+
+            product.USER_PRO = Request.Cookies["mailUser"].ToString();
+
+            product.ORDER_PRO = await data.MaxOrden();
+
+            ModelState.Clear();
+
+            TryValidateModel(product);
+
+            if (!ModelState.IsValid)
+            {
+                return View(product);
+            }
+
             await data.EditProductExist(product);
+
             return RedirectToAction("Index", "Products");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteProduct([FromBody] string name)
+        {
+            try
+            {
+                await data.Delete(name);
+
+                return Json(new { success = true });
+            }
+            catch(Exception ex)
+            {
+                return Json(new { success = false });
+            }
+
         }
     }
 }

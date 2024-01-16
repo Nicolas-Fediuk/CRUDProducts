@@ -13,8 +13,11 @@ namespace CRUDProducts.Services
         Task AddNewUser(Users user);
         Task<bool> CheckMail(Users user);
         Task<bool> CheckPass(Users user);
+        Task<bool> checkProductExist(string name);
+        Task Delete(string name);
         Task EditProductExist(Product product);
         Task<Product> GetProduct(string name);
         Task<IEnumerable<Product>> LoadProducts();
+        Task<int> MaxOrden();
     }
 }

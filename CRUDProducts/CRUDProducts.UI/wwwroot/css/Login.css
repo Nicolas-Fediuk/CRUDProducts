@@ -1,0 +1,35 @@
+﻿body, #containerPro {
+    background: rgb(230,135,229);
+    background: linear-gradient(90deg, rgba(230,135,229,1) 22%, rgba(0,212,255,1) 50%, rgba(2,0,36,1) 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#tableDiv {
+    max-width: 90%;
+    margin: 0 auto 0 auto;
+    background-color: rgb(0, 0, 0,0.1);
+    color:black;
+}
+
+#loadingDiv, #formNewProduct {
+    max-height: 50%;
+    height: auto 0 auto 0;
+}
+
+#loadingDiv {
+    position: relative;
+}
+
+#cubo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+

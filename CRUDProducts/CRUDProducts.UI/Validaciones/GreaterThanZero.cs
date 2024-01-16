@@ -12,7 +12,7 @@ namespace CRUDProducts.UI.Validaciones
                 return ValidationResult.Success;
             }
 
-            if (int.Parse(value.ToString()) < 0)
+            if (decimal.Parse(value.ToString()) <= 0)
             {
                 return new ValidationResult("Enter a number greater than 0");
             }

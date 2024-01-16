@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Azure.Core;
+using System.Globalization;
 
 namespace CRUDProducts.Services
 {
@@ -53,8 +54,23 @@ namespace CRUDProducts.Services
         {
             int maxOrden = await MaxOrden();
 
-            await connection.ExecuteAsync(@"INSERT INTO PRODUCTS(NAME_PRO, USER_PRO, STOCK_PRO, VALUE_PRO, ORDER_PRO)
-                                            VALUES('"+product.NAME_PRO+"', '"+product.USER_PRO+"', "+product.STOCK_PRO+", "+product.VALUE_PRO+", "+maxOrden+")");
+            string query = @"
+            INSERT INTO PRODUCTS(NAME_PRO, USER_PRO, STOCK_PRO, VALUE_PRO, ORDER_PRO)
+            VALUES(@NamePro, @UserPro, @StockPro, @ValuePro, @MaxOrder)";
+
+            CultureInfo culture = CultureInfo.InvariantCulture;
+
+            if (decimal.TryParse(product.VALUE_PRO, NumberStyles.AllowDecimalPoint, culture, out decimal valueProDecimal))
+            {
+                await connection.ExecuteAsync(query, new
+                {
+                    NamePro = product.NAME_PRO,
+                    UserPro = product.USER_PRO, 
+                    StockPro = product.STOCK_PRO,
+                    ValuePro = valueProDecimal,
+                    MaxOrder = maxOrden
+                });
+            }
         }
 
         public async Task<int> MaxOrden()
@@ -71,7 +87,36 @@ namespace CRUDProducts.Services
 
         public async Task EditProductExist(Product product)
         {
-            await connection.ExecuteAsync(@"update PRODUCTS set STOCK_PRO="+product.STOCK_PRO+ ", VALUE_PRO="+product.VALUE_PRO+" where NAME_PRO = '"+product.NAME_PRO+"'");
+            //await connection.ExecuteAsync(@"update PRODUCTS set STOCK_PRO="+product.STOCK_PRO+ ", VALUE_PRO="+decimal.Parse(product.VALUE_PRO.ToString())+" where NAME_PRO = '"+product.NAME_PRO+"'");
+
+            string query = @"
+            UPDATE PRODUCTS 
+            SET STOCK_PRO = @StockPro, VALUE_PRO = @ValuePro 
+            WHERE NAME_PRO = @NamePro";
+
+            CultureInfo culture = CultureInfo.InvariantCulture;
+
+            if (decimal.TryParse(product.VALUE_PRO, NumberStyles.AllowDecimalPoint, culture, out decimal valueProDecimal))
+            {
+                await connection.ExecuteAsync(query, new
+                {
+                    StockPro = product.STOCK_PRO,
+                    ValuePro = valueProDecimal,
+                    NamePro = product.NAME_PRO
+                });
+            }
+        }
+
+        public async Task Delete(string name)
+        {
+           await connection.ExecuteAsync(@"delete from PRODUCTS where NAME_PRO = '" + name + "'");
+        }
+
+        public async Task<bool> checkProductExist(string name)
+        {
+           int val = await connection.QueryFirstOrDefaultAsync<int>(@"select COUNT(UPPER(NAME_PRO)) from Products where NAME_PRO = '" + name.ToUpper() + "'");
+
+           return (val == 1) ? true : false;
         }
     }
 }

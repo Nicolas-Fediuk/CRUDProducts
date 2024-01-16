@@ -4,6 +4,7 @@ using CRUDProducts.UI.Models.Entitys;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Reflection.Metadata.Ecma335;
+using System.Text.RegularExpressions;
 
 namespace CRUDProducts.UI.Controllers
 {
@@ -17,6 +18,11 @@ namespace CRUDProducts.UI.Controllers
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Load()
         {
             return View();
         }
@@ -54,7 +60,7 @@ namespace CRUDProducts.UI.Controllers
             });
 
             return RedirectToAction("Index", "Products");
-            
+
         }
 
         public IActionResult NewUser()
@@ -63,10 +69,17 @@ namespace CRUDProducts.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> NewUser(Users user)
+        public async Task<IActionResult> NewUser(Users user, string password)
         {
+
             if (!ModelState.IsValid)
             {
+                if (string.IsNullOrEmpty(password))
+                {
+                    ViewBag.confirmPassword = "Confirm passwords is required";
+                    return View(user);
+                }
+
                 return View(user);
             }
 
@@ -77,6 +90,18 @@ namespace CRUDProducts.UI.Controllers
                 ModelState.AddModelError(nameof(user.MAIL_USR), $"The mail {user.MAIL_USR} already exist");
                 return View(user);
             }
+
+            if (!OkPassword(user.PASSWORD_USR))
+            {
+                ModelState.AddModelError(nameof(user.PASSWORD_USR), "The password must contain: 8 characters, a capital letter, a numerical digit and a special character");
+                return View(user);
+            }
+
+            if (user.PASSWORD_USR != password)
+            {
+                ViewBag.confirmPassword = "Passwords do not match";
+                return View(user);
+            }
             else
             {
                 user.PASSWORD_USR = Encrypt.GetSHA256(user.PASSWORD_USR);
@@ -84,6 +109,20 @@ namespace CRUDProducts.UI.Controllers
             }
 
             return RedirectToAction("Index", "Login");
+        }
+
+        private bool OkPassword(string password)
+        {
+
+            if (password.Length > 8 &&
+               password.Any(char.IsUpper) &&
+               password.Any(char.IsDigit) &&
+               Regex.IsMatch(password, @"[!@#$%^&*()_+=\[{\]};:<>|./?,-]"))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

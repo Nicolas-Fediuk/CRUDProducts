@@ -1,7 +1,9 @@
 using CRUDProducts.Services;
 using CRUDProducts.UI.Controllers;
 using CRUDProducts.UI.Models.Entitys;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,13 @@ builder.Services.AddTransient<IData, Data>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//builder.Services.Configure<RequestLocalizationOptions>(options =>
+//{
+//    options.DefaultRequestCulture = new RequestCulture("es-SV"); 
+//    options.SupportedCultures = new[] { new CultureInfo("es-SV") }; 
+//    options.SupportedUICultures = new[] { new CultureInfo("es-SV") };
+//});
 
 var app = builder.Build();
 

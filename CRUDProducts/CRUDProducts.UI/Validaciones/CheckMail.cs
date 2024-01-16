@@ -14,7 +14,7 @@ namespace CRUDProducts.UI.Validaciones
 
             if (!OkMail(value.ToString()))
             {
-                return new ValidationResult("Mail invalido");
+                return new ValidationResult("Invalid mail");
             }
 
             return ValidationResult.Success;

@@ -1,42 +1,45 @@
 ﻿@using CRUDProducts.UI.Models.Entitys
 @model Users
+<head>
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+</head>
 
-<body>
+<body class="vh-100">
 
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    <main>
-        <form asp-action="Index">
+    <main class="row d-flex h-100 justify-content-evenly align-items-center">
+        <form asp-action="Index" class="col-md-6 w-25 d-flex flex-column p-4 rounded">
+
+            <h1 class="pb-2 text-center">Logín</h1>
 
             <div class="mb-3">
                 <label asp-for="MAIL_USR" class="form-label">Email</label>
-                <input type="text" asp-for="MAIL_USR" class="form-control" />
+                <input type="text" asp-for="MAIL_USR" class="form-control"/>
                 <span asp-validation-for="MAIL_USR" class="text-danger"></span>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-4">
                 <label asp-for="PASSWORD_USR" class="form-label">Password</label>
-                <input type="text" asp-for="PASSWORD_USR" class="form-control" />
+                <input type="password" asp-for="PASSWORD_USR" class="form-control"/>
                 <span asp-validation-for="PASSWORD_USR" class="text-danger"></span>
             </div>  
 
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
-
-            <div>
-                <a asp-action="NewUser">Crear cuenta</a>
-            </div>
-
             <button type="submit" class="btn btn-primary">Submit</button>
 
+            <div class="col-md-6 pt-3 text-center w-100">
+                <a asp-action="NewUser">new account</a>
+            </div>
+
         </form>
+
+        <div class="col-md-6 w-25">
+            <img class="w-100" src="img/login.svg" />
+        </div>
     </main>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 
     @section Scripts{
         <partial name="_ValidationScriptsPartial" />

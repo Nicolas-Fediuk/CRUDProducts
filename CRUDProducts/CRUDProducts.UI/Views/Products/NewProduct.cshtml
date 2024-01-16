@@ -1,41 +1,33 @@
 ﻿@using CRUDProducts.UI.Models.Entitys
 @model Product
 
-<body>
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-    <main>
+<main class="vh-100">
+    
+    <div class="text-center mt-5 mb-5">
         <h1>New product</h1>
+    </div>
 
-        <form asp-action="NewProduct">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <form class="p-5 w-25">
             <div class="mb-3">
                 <label class="form-label">Name</label>
-                <input type="text" asp-for="NAME_PRO" class="form-control"/>
-                <span asp-validation-for="NAME_PRO" class="text-danger"></span>
+                <input id="NAME_PRO" type="text" asp-for="NAME_PRO" class="form-control" />
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Stock</label>
-                <input type="text" asp-for="STOCK_PRO" class="form-control" />
-                <span asp-validation-for="STOCK_PRO" class="text-danger"></span>
+                <input id="STOCK_PRO" type="text" asp-for="STOCK_PRO" class="form-control" />
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Value</label>
-                <input type="text" asp-for="VALUE_PRO" class="form-control" />
-                <span asp-validation-for="VALUE_PRO" class="text-danger"></span>
+                <input type="text" asp-for="VALUE_PRO" class="form-control" id="numeroConComa" />
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button id="btnNew" type="submit" class="btn btn-primary w-100 mt-3">Submit</button>
 
         </form>
-    </main>
+    </div>
+</main>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @section Scripts{
-        <partial name="_ValidationScriptsPartial" />
-    }
-</body>
+<script src="~/js/NewProduct.js"></script>

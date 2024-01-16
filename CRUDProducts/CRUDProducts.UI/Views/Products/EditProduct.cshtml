@@ -4,38 +4,45 @@
 <body>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    <main>
-        <h1>Edit product: @Model.NAME_PRO</h1>
+    <main class="vh-100">
 
-        <form asp-action="EditProduct">
-            <div class="mb-3">
-                <label class="form-label">Name</label>
-                <input type="text" asp-for="NAME_PRO" class="form-control"/>
-                <span asp-validation-for="NAME_PRO" class="text-danger"></span>
-            </div>
+        <div class="text-center mt-5 mb-5">
+            <h1>Edit product: @Model.NAME_PRO</h1>
+        </div>
+        
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <form asp-action="EditProduct" class="p-5 w-25">
 
-            <div class="mb-3">
-                <label class="form-label">Stock</label>
-                <input type="text" asp-for="STOCK_PRO" class="form-control" />
-                <span asp-validation-for="STOCK_PRO" class="text-danger"></span>
-            </div>
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" asp-for="NAME_PRO" class="form-control" readonly />
+                    <span asp-validation-for="NAME_PRO" class="text-danger"></span>
+                </div>
 
-            <div class="mb-3">
-                <label class="form-label">Value</label>
-                <input type="text" asp-for="VALUE_PRO" class="form-control" />
-                <span asp-validation-for="VALUE_PRO" class="text-danger"></span>
-            </div>
+                <div class="mb-3">
+                    <label class="form-label">Stock</label>
+                    <input type="text" asp-for="STOCK_PRO" class="form-control" />
+                    <span asp-validation-for="STOCK_PRO" class="text-danger"></span>
+                </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="mb-3">
+                    <label class="form-label">Value</label>
+                    <input type="text" asp-for="VALUE_PRO" class="form-control" id="numeroConComa"/>
+                    <span asp-validation-for="VALUE_PRO" class="text-danger"></span>
+                </div>
 
-        </form>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Submit</button>
+
+            </form>
+        </div>
+       
     </main>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @section Scripts{
-        <partial name="_ValidationScriptsPartial" />
-    }
 </body>
+
+<script src="~/js/EditProduct.js" asp-append-version="true"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

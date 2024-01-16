@@ -4,9 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CRUDProducts.UI</title>
+    <link rel="stylesheet" href="~/css/Load.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/table.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/CRUDProducts.UI.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    @*<link rel="stylesheet" href="~/CRUDProducts.UI.styles.css" asp-append-version="true" />*@
 </head>
 <body>
 
@@ -14,7 +17,9 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-ui-1.13.2/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
